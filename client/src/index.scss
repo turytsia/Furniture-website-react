@@ -182,6 +182,7 @@
 }
 
 .footer {
+    margin-top: 100px;
     background-color: #dfdfdf;
     & p {
         font-size: 14px;
@@ -237,4 +238,43 @@
         text-align: center;
         padding: 42px 0;
     }
+}
+
+.breadcrumbs {
+    z-index: 1;
+    background-color: rgba($grayLight, .5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    &-path {
+        padding: 15px 0;
+    }
+}
+
+.about {
+    &-wall {
+        background-image: url('./img/about-wall.jpg');
+    }
+    &-wall-title {
+        padding: 160px 0;
+        text-align: center;
+    }
+    &-desc {
+        margin: 100px 0 40px;
+    }
+    &-desc-title {
+        width: 825px;
+    }
+    &-desc-text {
+        width: 825px;
+        display: block;
+        margin-left: 20%;
+        margin-top: 35px;
+    }
+}
+
+.company {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }

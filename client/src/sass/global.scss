@@ -11,6 +11,10 @@ body {
     overflow-x: hidden;
 }
 
+section {
+    position: relative;
+}
+
 .wrapper {
     max-width: 1100px;
     margin: 0 auto;

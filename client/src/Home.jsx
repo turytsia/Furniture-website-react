@@ -148,7 +148,7 @@ export default function Home() {
                 <div className="wrapper">
                     <div className="inspiration-content">
                         <div className="blog-item">
-                            <img src={blogItem1} alt="blog-image" />
+                            <img src={blogItem1} alt="blog" />
                             <div className="blog-info">
                                 <span className="blog-date">March 12, 2020</span>
                                 <span> | by </span>
@@ -161,7 +161,7 @@ export default function Home() {
                             </Link>
                         </div>
                         <div className="blog-item">
-                            <img src={blogItem2} alt="blog-image" />
+                            <img src={blogItem2} alt="blog" />
                             <div className="blog-info">
                                 <span className="blog-date">March 12, 2020</span>
                                 <span> | by </span>
