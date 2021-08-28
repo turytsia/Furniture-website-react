@@ -76,7 +76,7 @@
 }
 
 .progress {
-    padding: 80px 0 100px;
+    padding: 80px 0 150px;
     &-inner {
         border-bottom: 2px solid $black;
         position: relative;
@@ -128,9 +128,9 @@
     }
 }
 
-.home-gallery {
-    margin-top: 150px;
+.gallery {
     width: 100%;
+    padding: 50px 0;
     height: 100vh;
     &-btn {
         margin: 0 auto 40px;
@@ -277,4 +277,214 @@
 .company {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+}
+
+.details {
+    margin: 235px 0 10px;
+    background-image: url('./img/sliderBg1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 414px;
+    &-inner {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+    &-inner>img {
+        position: absolute;
+        left: -250px;
+        top: -125px;
+    }
+    &-info {
+        max-width: 825px;
+        position: absolute;
+        top: -125px;
+        right: 0;
+    }
+    &-values {
+        margin-top: 50px;
+    }
+    &-progressline {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 35px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid white;
+        position: relative;
+    }
+    &-line {
+        background-color: $black;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 20%;
+        height: 2px;
+    }
+}
+
+.about-video {
+    background-image: url('./img/video.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 167px 0;
+    margin-top: 100px;
+    &-btn {
+        display: block;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+}
+
+.blog {
+    &-item {
+        max-width: 730px;
+        margin-bottom: 40px;
+    }
+    &-image {
+        width: 100%;
+    }
+    &-info {
+        margin: 20px 0 7px;
+    }
+    &-info,
+    &-info a {
+        color: $gray;
+        font-size: 14px;
+    }
+    &-info a:hover {
+        text-decoration: underline;
+    }
+    &-inner {
+        padding-top: 110px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &-title {
+        display: inline-block;
+        margin: 5px 0;
+    }
+    &-text {
+        margin-top: 10px;
+    }
+    &-cite-content {
+        margin-top: 60px;
+        background-color: rgba($grayLight, .5);
+        padding: 60px;
+        text-align: center;
+    }
+    &-cite {
+        font-size: 24px;
+    }
+    &-cite::after {
+        right: 30%;
+    }
+    &-author {
+        margin-top: 50px;
+    }
+    &-nav {
+        max-width: 350px;
+    }
+    &-nav-search {
+        position: relative;
+    }
+    &-nav-search>input {
+        font-size: 14px;
+        display: block;
+        font-family: Open Sans;
+        width: 100%;
+        border: 1px solid rgba($black, .7);
+        border-radius: 20px;
+        padding: 6px 18px;
+    }
+    &-nav-search>input::placeholder {
+        color: $grayLight;
+    }
+    &-nav-search>img {
+        position: absolute;
+        right: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &-nav-list {
+        margin-top: 45px;
+        display: flex;
+        flex-direction: column;
+    }
+    &-nav-list>h5 {
+        margin-bottom: 15px;
+    }
+    &-nav-list>a {
+        color: $gray;
+        margin: 6px 0;
+    }
+    &-nav-item>a {
+        color: $black;
+        display: block;
+        margin-bottom: 5px;
+    }
+    &-nav-item>span {
+        margin-bottom: 15px;
+        font-size: 14px;
+        display: block;
+        color: rgba($gray, .5);
+    }
+    &-nav-item>span>a {
+        color: rgba($gray, .5);
+    }
+    &-tag {
+        width: fit-content;
+        color: rgba($gray, .5);
+        border: 1px solid rgba($gray, .5);
+        font-size: 14px;
+        border-radius: 14px;
+        padding: 5px 16px;
+    }
+    &-nav-social {
+        margin-top: 40px;
+        max-width: 155px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.pagination {
+    width: 48px;
+    white-space: nowrap;
+    margin: 0 auto;
+    &-arrow {
+        margin: 0 6px;
+    }
+    &>span {
+        padding: 0 6px;
+        color: rgba($gray, .5);
+    }
+    &-current {
+        color: $black !important;
+    }
+}
+
+.single-blog {
+    &-cite-content {
+        margin: 20px 0;
+        padding: 20px;
+    }
+    &-cite {
+        font-size: 24px;
+    }
+    &-author {
+        margin-top: 50px;
+    }
+    &-tags {
+        margin: 30px 0;
+    }
+    &-tags-list {
+        margin-top: 15px;
+    }
+    &-tags-list>a:not(:first-child) {
+        margin-left: 15px;
+    }
 }

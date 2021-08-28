@@ -166,24 +166,3 @@ a {
         background-size: cover;
     }
 }
-
-//blog
-.blog {
-    &-item {
-        width: 540px;
-    }
-    &-image {
-        width: 100%;
-    }
-    &-info {
-        margin: 20px 0 7px;
-    }
-    &-info,
-    &-info a {
-        color: $gray;
-        font-size: 14px;
-    }
-    &-info a:hover {
-        text-decoration: underline;
-    }
-}

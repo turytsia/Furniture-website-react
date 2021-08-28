@@ -11,10 +11,10 @@ export default function Header() {
             <div className="wrapper">
                 <div className="header-inner">
                     <div className="header-link-wrapper">
-                        <Link to={''} className="header-link">
+                        <Link to={'/about'} className="header-link">
                             About
                         </Link>
-                        <Link to={''} className="header-link">
+                        <Link to={'/gallery'} className="header-link">
                             Gallery
                         </Link>
                     </div>
@@ -23,11 +23,11 @@ export default function Header() {
                         <img className="header-img-logo" src={logo} alt="logo" />
                     </Link>
                     <div className="header-link-wrapper">
-                        <Link to={''} className="header-link">
+                        <Link to={'/blog'} className="header-link">
                             Blog
                         </Link>
-                        <Link to={''} className="header-link">
-                            Content
+                        <Link to={'/contact'} className="header-link">
+                            Contact
                         </Link>
                         <div className="header-menu">
                             <img className="header-img-menu" src={menu} alt="menu" />

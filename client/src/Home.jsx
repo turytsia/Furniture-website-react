@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 
@@ -9,20 +9,14 @@ import measure from './img/measure.png'
 import tools from './img/tools.svg'
 import sofa from './img/sofa.svg'
 
-import galleryImg1 from './img/galleryImg1.jpg'
-import galleryImg2 from './img/galleryImg2.jpg'
-import galleryImg3 from './img/galleryImg3.jpg'
-import galleryImg4 from './img/galleryImg4.jpg'
-import galleryImg5 from './img/galleryImg5.jpg'
-
 import blogItem1 from './img/blogItem1.png'
 import blogItem2 from './img/blogItem2.png'
 //components
 import SliderLine from './components/SliderLine'
+import Gallery from './Gallery'
 
 export default function Home() {
 
-    const [galleryFilter, setGalleryFilter] = useState('')
 
     const SliderSettings = {
         dots: true,
@@ -126,22 +120,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="home-gallery">
-                <div className="home-gallery-btn">
-                    <button className={`${galleryFilter === 'Bedroom furniture' && 'home-gallery--active-btn'}`} onClick={(e) => { setGalleryFilter(e.target.textContent) }}>Bedroom furniture</button>
-                    <button className={`${galleryFilter === 'Living room furniture' && 'home-gallery--active-btn'}`} onClick={(e) => { setGalleryFilter(e.target.textContent) }}>Living room furniture</button>
-                    <button className={`${galleryFilter === 'Office furniture' && 'home-gallery--active-btn'}`} onClick={(e) => { setGalleryFilter(e.target.textContent) }}>Office furniture</button>
-                    <button className={`${galleryFilter === 'Dining room futniture' && 'home-gallery--active-btn'}`} onClick={(e) => { setGalleryFilter(e.target.textContent) }}>Dining room futniture</button>
-                    <button className={`${galleryFilter === 'Chair' && 'home-gallery--active-btn'}`} onClick={(e) => { setGalleryFilter(e.target.textContent) }}>Chair</button>
-                </div>
-                <div className="home-gallery-grid">
-                    <div className="home-gallery-img" style={{ backgroundImage: `url(${galleryImg1})` }}></div>
-                    <div className="home-gallery-img" style={{ backgroundImage: `url(${galleryImg2})` }}></div>
-                    <div className="home-gallery-img" style={{ backgroundImage: `url(${galleryImg3})` }}></div>
-                    <div className="home-gallery-img" style={{ backgroundImage: `url(${galleryImg4})` }}></div>
-                    <div className="home-gallery-img" style={{ backgroundImage: `url(${galleryImg5})` }}></div>
-                </div>
-            </section>
+            <Gallery/>
 
             <section className="inspiration">
                 <h3 className="inspiration-title">More inspiration ideas in our blog</h3>
