@@ -166,3 +166,15 @@ a {
         background-size: cover;
     }
 }
+
+//input fields
+.edit-input {
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    color: $black;
+    font-size: 18px;
+    font-family: Montserrat;
+    color: $black;
+    font-size: 24px;
+}

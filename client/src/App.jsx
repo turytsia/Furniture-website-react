@@ -1,10 +1,12 @@
-import {BrowserRouter} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Router from './Router';
+import Admin from './private/Admin';
 function App() {
+  let path = useLocation().pathname
   return (
-    <BrowserRouter className="App">
-      <Router/>
-    </BrowserRouter>
+    <section className="App">
+      {path.includes('/admin') ? <Admin /> : <Router />}
+    </section>
   );
 }
 

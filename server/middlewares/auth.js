@@ -7,6 +7,7 @@ export async function Auth(req, res, next) {
         req.user = user
     } catch (err) {
         req.user = null
+        res.status(200).json({ success: false, message: 'Unauthorized' })
     }
     next()
 }

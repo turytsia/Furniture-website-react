@@ -11,6 +11,7 @@ import Home from './Home'
 import About from './About'
 import Blog from './Blog'
 import SingleBlog from './SingleBlog'
+import Contact from './Contact'
 
 export default function Router() {
     return (
@@ -24,6 +25,7 @@ export default function Router() {
                     <Route exact path='/gallery' component={Gallery} />
                     <Route exact path='/blog' component={Blog} />
                     <Route exact path='/blog/id' render={() => <SingleBlog />} />
+                    <Route exact path = '/contact' component={Contact}/>
                 </Switch>
             </section>
             <Footer />

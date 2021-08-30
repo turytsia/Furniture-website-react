@@ -10,7 +10,7 @@ export async function Register(req, res) {
             throw new Error('Wrong secret code')
 
         const user = new employeeModel({ name, surname, password, email })
-        user.save()
+        await user.save()
 
         res
             .cookie('token', user.getSignedToken(), { httpOnly: true })

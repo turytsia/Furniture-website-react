@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 //images
 import blogItem2 from './img/blogItem3.png'
-import blowArrowRight from './img/blowArrowRight.svg'
-import blowArrowLeft from './img/blowArrowLeft.svg'
+import blogArrowRight from './img/blowArrowRight.svg'
+import blogArrowLeft from './img/blowArrowLeft.svg'
 //components
 import Navigation from './components/Navigation'
 
@@ -39,26 +39,72 @@ export default function SingleBlog() {
                         <div className="single-blog-tags">
                             <h4>Tags</h4>
                             <div className="single-blog-tags-list">
-                            <Link to={''} className="blog-tag">
-                                Dining room futniture
-                            </Link>
-                            <Link to={''} className="blog-tag">
-                                Chair
-                            </Link>
-                            <Link to={''} className="blog-tag">
-                                Table
-                            </Link>
-                            <Link to={''} className="blog-tag">
-                                Bedroom
-                            </Link>
-                            <Link to={''} className="blog-tag">
-                                Office Furniture
-                            </Link>
+                                <Link to={''} className="blog-tag">
+                                    Dining room futniture
+                                </Link>
+                                <Link to={''} className="blog-tag">
+                                    Chair
+                                </Link>
+                                <Link to={''} className="blog-tag">
+                                    Table
+                                </Link>
+                                <Link to={''} className="blog-tag">
+                                    Bedroom
+                                </Link>
+                                <Link to={''} className="blog-tag">
+                                    Office Furniture
+                                </Link>
                             </div>
                         </div>
                         <div className="blog-pagination">
-
+                            <div className="blog-pagination-wrapper">
+                                <Link to={''}>
+                                    <img src={blogArrowLeft} alt="arrow" />
+                                </Link>
+                                <Link to={''}>
+                                    <p>
+                                        Cred selfies edison bulb four dollar toast humblebrag
+                                    </p>
+                                </Link>
+                            </div>
+                            <div className="blog-pagination-wrapper">
+                                <Link to={''}>
+                                    <p>
+                                        Cred selfies edison bulb four dollar toast humblebrag
+                                    </p>
+                                </Link>
+                                <Link to={''}>
+                                    <img src={blogArrowRight} alt="arrow" />
+                                </Link>
+                            </div>
                         </div>
+                        <section className="blog-comments">
+                            <h4 className="blog-comments-title">
+                                Comments:
+                            </h4>
+                            <div className="blog-comments-list">
+                                <div className="blog-comments-item">
+                                    <div className="blog-comments-avatar"></div>
+                                    <div className="blog-comments-content">
+                                        <h5>Lea Brown</h5>
+                                        <span>August 12, 2020</span>
+                                        <p>Tumeric tousled austin, kinfolk scenester authentic craft beer truffaut irony intelligentsia YOLO lomo bushwick coloring book. Semiotics man bun venmo viral cliche</p>
+                                    </div>
+                                    <Link className="blog-comments-reply" to={''}>
+                                        <p>Reply</p>
+                                    </Link>
+                                </div>
+                            </div>
+                            <form className="blog-comments-post">
+                                <h5>Post a Comment</h5>
+                                <div className="blog-comments-post-inner">
+                                    <textarea placeholder="Your comment"></textarea>
+                                    <input type="text" placeholder = "Your name"/>
+                                    <input type="text" placeholder = "Your e-mail"/>
+                                </div>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </section>
                     </div>
                     <Navigation />
                 </div>

@@ -32,6 +32,7 @@ emoloyeeSchema.pre('save', async function() {
 
 emoloyeeSchema.methods.getSignedToken = function() {
     const payload = {
+        id: this._id,
         name: this.name,
         surname: this.surname,
         email: this.email,
@@ -42,6 +43,16 @@ emoloyeeSchema.methods.getSignedToken = function() {
 
 emoloyeeSchema.methods.matchPasswords = async function(password) {
     return await bcrypt.compare(password, this.password)
+}
+
+emoloyeeSchema.methods.addBlog = function(blogID) {
+    this.blogs.push(blogID)
+    this.markModified('blogs')
+}
+
+emoloyeeSchema.methods.deleteBlog = function(blogID) {
+    this.blogs = this.blogs.splice(this.blogs.indexOf(blogID), 1)
+    this.markModified('blogs')
 }
 
 const employeeModel = mongoose.model('employee', emoloyeeSchema)
