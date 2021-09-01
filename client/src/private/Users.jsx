@@ -5,11 +5,9 @@ export default function Users() {
     return (
         <section className="admin-users">
             <div className="wrapper">
-
                 <div className="admin-inner">
                     <div className="admin-filter">
                         <button>
-
                             <h5>Clear List</h5>
                         </button>
                     </div>
@@ -21,7 +19,6 @@ export default function Users() {
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

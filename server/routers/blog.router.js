@@ -3,10 +3,13 @@ import { addBlog, updateBlog, deleteBlog, getBlog, getBlogs } from "../controlle
 import { Auth } from '../middlewares/auth.js'
 const router = Router()
 
+router.use(Auth)
+
 router.get('/', getBlogs)
-router.get('/:blog', getBlog)
-router.post('/new', Auth, addBlog)
-router.patch('/update/:blog', Auth, updateBlog)
-router.delete('/delete/:blog', Auth, deleteBlog)
+router.post('/new', addBlog)
+router.route('/:blog')
+    .get(getBlog)
+    .patch(updateBlog)
+    .delete(deleteBlog)
 
 export default router

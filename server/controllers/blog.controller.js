@@ -5,8 +5,11 @@ export async function getBlogs(req, res) {
     const filter = {}
     const sort = {}
     try {
+
         const blogs = await blogModel.find(filter).sort(sort)
-        res.status(200).json({ success: true, blogs })
+
+        const user = await employeeModel.findById(req.user.id)
+        res.status(200).json({ success: true, blogs, user })
     } catch (err) {
         res.status(200).json({ success: false, message: err.message })
     }
@@ -25,11 +28,11 @@ export async function getBlog(req, res) {
 }
 
 export async function addBlog(req, res) {
-    const { title, body, tags } = req.body
+    const { title, body, tags, category } = req.body
     try {
         const user = await employeeModel.findById(req.user.id, '-password -email')
 
-        const blog = new blogModel({ title, body, tags, author: user })
+        const blog = new blogModel({ title, body, tags, author: user, category })
         await blog.save()
 
         await user.addBlog(blog._id)

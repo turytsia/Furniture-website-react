@@ -711,8 +711,14 @@
     &-blog-content {
         color: $black;
     }
+    &-blog-title:hover {
+        text-decoration: underline;
+    }
     &-blog-content>span {
         margin-right: 10px;
+    }
+    &-blog-content>svg {
+        cursor: pointer;
     }
     &-blog-btn {
         margin-left: 25px;
@@ -732,11 +738,54 @@
     &-filter>button>h5 {
         color: white;
     }
+    &-blog-form>button {
+        background-color: $black;
+        padding: 10px 30px;
+        margin-top: 20px;
+        color: white;
+    }
     &-filter>button>svg {
         margin-right: 10px;
     }
     &-users {
         width: 100%;
+    }
+    &-blog-form {
+        width: 100%;
+    }
+    &-blog-form-input {
+        position: relative;
+        margin-top: 15px;
+    }
+    &-blog-form-input>textarea,
+    &-blog-form-input>input {
+        resize: vertical;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba($gray, .2);
+        padding: 10px 25px;
+    }
+    &-blog-form-list {
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+    }
+    &-blog-form-inner {
+        position: relative;
+        display: none;
+    }
+    &-blog-form-list>span {
+        display: block;
+        padding: 5px 15px;
+        transition: .2s;
+    }
+    &-blog-form-list>span:hover {
+        background-color: rgba($gray, .1);
+        cursor: pointer;
     }
 }
 

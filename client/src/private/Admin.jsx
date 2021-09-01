@@ -48,7 +48,7 @@ export default function Admin() {
                             <Navigation setAuthorized={setAuthorized} />
                             <Route exact path='/admin/account' component={Profile} />
                             <Route exact path='/admin/pages' component={Pages} />
-                            <Route exact path='/admin/blogs' component={BlogList} />
+                            <Route exact path='/admin/blogs' render={()=><BlogList setUser = {setUser}/>} />
                             <Route exact path='/admin/users' component={Users} />
                         </> :
                         <>

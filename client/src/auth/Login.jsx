@@ -30,9 +30,8 @@ export default function Login({setAuthorized}) {
         <section className="auth">
             <form onSubmit={(e) => login(e)} className="auth-form">
                 <h3>Login</h3>
-                <input type="password" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <input type="email" placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <div className="auth-btn">
+                <input type="password" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} />                <div className="auth-btn">
                     <button type="submit">Login</button>
                     <Link to={'/admin/register'}>Or create account</Link>
                 </div>
