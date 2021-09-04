@@ -125,8 +125,10 @@ export default function BlogList({ setUser }) {
     }
     async function getBlogs() {
         const { data } = await http.get('/blog')
-        setBlogs(data.blogs)
-        setUser(data.user)
+        if (data.success) {
+            setBlogs(data.blogs)
+            setUser(data.user)
+        }
     }
     async function startEditBlog(id) {
         const { data } = await http.get(`/blog/${id}`)

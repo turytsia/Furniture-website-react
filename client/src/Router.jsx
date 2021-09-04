@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 //components
@@ -14,6 +14,7 @@ import SingleBlog from './SingleBlog'
 import Contact from './Contact'
 
 export default function Router() {
+    const [blog, setBlog] = useState(null)
     return (
         <section className="app-router">
             <Header />
@@ -23,9 +24,9 @@ export default function Router() {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About} />
                     <Route exact path='/gallery' component={Gallery} />
-                    <Route exact path='/blog' component={Blog} />
-                    <Route exact path='/blog/id' render={() => <SingleBlog />} />
-                    <Route exact path = '/contact' component={Contact}/>
+                    <Route exact path='/blog' render={() => <Blog setBlog={setBlog} />} />
+                    <Route exact path='/blog/:id' render={() => <SingleBlog blog={blog} />} />
+                    <Route exact path='/contact' component={Contact} />
                 </Switch>
             </section>
             <Footer />

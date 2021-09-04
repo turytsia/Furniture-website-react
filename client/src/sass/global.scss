@@ -193,3 +193,9 @@ form {
     padding: 5px;
     color: white;
 }
+
+.breadcrumbs-path {
+    &>p {
+        display: inline;
+    }
+}
