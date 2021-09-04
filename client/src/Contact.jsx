@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 //images
 import instagram from './img/instagram.svg'
@@ -9,8 +9,32 @@ import youtube from './img/youtube.svg'
 import envelope from './img/envelope.svg'
 //components
 import SliderLine from './components/SliderLine'
-
+//http
+import http from './services.js'
 export default function Contact() {
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
+
+    const [errorMessage, setErrorMessage] = useState('')
+
+    async function addCustomer(e) {
+        e.preventDefault()
+        try {
+            if (!name || !email || !message)
+                throw new Error('Please enter all the fields')
+            const { data } = await http.post('/customer', { name, email, message })
+            if (!data.success) throw new Error(data.message)
+            setErrorMessage('Contact was sent')
+            setName('')
+            setEmail('')
+            setMessage('')
+        } catch (err) {
+            setErrorMessage(err.message)
+        }
+
+    }
     return (
         <section className="contact">
             <iframe title="map" className="contact-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20502.990474487673!2d14.481034989952105!3d50.03246034983804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b923122a80c53%3A0x84a94840a752db88!2sChodov%2C%20Prague%2011!5e0!3m2!1sen!2scz!4v1630172213666!5m2!1sen!2scz" width="600" height="450" Style={{ border: 0 }} allowfullscreen="" loading="lazy"></iframe>
@@ -35,13 +59,14 @@ export default function Contact() {
                             <img src={envelope} alt="icon" />
                             <Link to={''}>ouremailaddress@email.com</Link>
                         </div>
-                        <form className="contact-content-form">
+                        <form onSubmit={(e) => addCustomer(e)} className="contact-content-form">
                             <div className="contact-content-form-inner">
-                                <input placeholder="Your name" type="text" />
-                                <input placeholder="Your e-mail" type="text" />
-                                <textarea placeholder="Your message"></textarea>
+                                <input placeholder="Your name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input placeholder="Your e-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <textarea placeholder="Your message" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                             </div>
                             <button type="submit">Send</button>
+                            {errorMessage && <h4 className="error-message">{errorMessage}</h4>}
                         </form>
                     </div>
                 </div>

@@ -178,3 +178,18 @@ a {
     color: $black;
     font-size: 24px;
 }
+
+form {
+    position: relative;
+}
+
+.error-message {
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    background-color: $red;
+    padding: 5px;
+    color: white;
+}

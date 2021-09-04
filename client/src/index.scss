@@ -673,18 +673,35 @@
     &-profile-avatar {
         width: 150px;
         height: 150px;
+        margin: 50px auto 0;
         background-color: $gray;
         border-radius: 50%;
     }
+    &-profile-names {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+    &-profile-names>h4 {
+        display: inline;
+        padding: 10px;
+    }
     &-profile-position {
-        padding: 20px 0;
-        color: rgba($gray, .5);
+        padding: 10px 30px;
+        color: white;
+        position: absolute;
+        background-color: rgba($gray, .5);
+        right: 20px;
+        top: 20px;
+        font-family: Open Sans;
+        text-transform: uppercase;
     }
     &>section {
         width: 100%;
     }
     &-inner {
         padding: 40px;
+        position: relative;
     }
     &-pages-item {
         display: block;

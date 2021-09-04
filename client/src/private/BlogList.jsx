@@ -50,7 +50,7 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
             setErrorMessage(err.message)
         }
     }
-    async function updateBlog(e,id){
+    async function updateBlog(e, id) {
         e.preventDefault()
         try {
             if (!title || !body || !tags.length || !category)
@@ -58,14 +58,14 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
             const { data } = await http.patch(`/blog/${editedBlog._id}`, { title, body, tags, category })
             if (!data.success)
                 throw new Error(data.message)
-                await getBlogs()
-                setActivePost(false)
+            await getBlogs()
+            setActivePost(false)
 
         } catch (err) {
             setErrorMessage(err.message)
         }
     }
-    return (<form onSubmit={(e) => editedBlog?updateBlog(e):addBlog(e)} className="admin-blog-form">
+    return (<form onSubmit={(e) => editedBlog ? updateBlog(e) : addBlog(e)} className="admin-blog-form">
         <div className="admin-blog-form-input">
             <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title. Hello, World!" />
         </div>
@@ -98,7 +98,7 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
                 </div>
             </div>
         </div>
-        <button type="submit">{`${editedBlog?'Save':'Submit'}`}</button>
+        <button type="submit">{`${editedBlog ? 'Save' : 'Submit'}`}</button>
         {errorMessage && <h4 className="auth-error">{errorMessage}</h4>}
     </form>)
 }

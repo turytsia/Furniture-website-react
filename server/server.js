@@ -7,6 +7,7 @@ import appRouter from './routers/app.router.js'
 import authRouter from './routers/auth.router.js'
 import privateRouter from './routers/private.router.js'
 import blogRouter from './routers/blog.router.js'
+import customerRouter from './routers/customer.router.js'
 
 dotenv.config()
 const app = express()
@@ -21,6 +22,7 @@ app.use(cookieParser())
 
 //routers
 app.use('/', appRouter)
+app.use('/customer', customerRouter)
 app.use('/auth', authRouter)
 app.use('/blog', blogRouter)
 app.use('/admin', privateRouter)

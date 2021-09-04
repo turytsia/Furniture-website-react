@@ -10,7 +10,8 @@ export default function Profile() {
                     <div className="admin-profile-avatar"></div>
                     <h4 className="admin-profile-position">Admin</h4>
                     <span className="admin-profile-names">
-                        <input className="admin-profile-name edit-input" type="text" defaultValue={`${user.name} ${user.surname}`} disabled={false} />
+
+                        <h4>{user.name} {user.surname}</h4>
                     </span>
                 </div>
             </div>
