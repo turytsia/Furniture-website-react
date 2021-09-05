@@ -199,3 +199,12 @@ form {
         display: inline;
     }
 }
+
+.custome-file-input {
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px 25px;
+    color: white;
+    background-color: $black;
+    margin: 10px 0;
+}

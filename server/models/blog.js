@@ -22,7 +22,10 @@ const blogSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-
+    },
+    blogImg: {
+        type: String,
+        required: true
     }
 })
 blogSchema.pre('save', function() {

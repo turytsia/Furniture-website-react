@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 //images
 import blogItem2 from './img/blogItem3.png'
@@ -6,14 +6,24 @@ import blogArrowRight from './img/blowArrowRight.svg'
 import blogArrowLeft from './img/blowArrowLeft.svg'
 //components
 import Navigation from './components/Navigation'
-
-export default function SingleBlog({ blog }) {
+//http
+import http from './services.js'
+export default function SingleBlog({ match }) {
+    const [blog, setBlog] = useState(null)
+    async function getBlog() {
+        const { data } = await http.get(`/blog/${match.params.id}`)
+        if (data.success)
+            setBlog(data.blog)
+    }
+    useEffect(() => {
+        getBlog()
+    }, [])
     return (
         <section className="blog-page">
             <div className="wrapper">
                 <div className="blog-inner">
-                    <div className="blog-item">
-                        <img src={blogItem2} alt="blog" />
+                    {blog && <div className="blog-item">
+                        <img src={`http://localhost:5000/${blog.blogImg}`} alt="blog" />
                         <div className="blog-info">
                             <span className="blog-date">March 12, 2020</span>
                             <span> | by </span>
@@ -90,7 +100,7 @@ export default function SingleBlog({ blog }) {
                                 <button type="submit">Submit</button>
                             </form>
                         </section>
-                    </div>
+                    </div>}
                     <Navigation />
                 </div>
             </div>

@@ -6,7 +6,7 @@ import pinterest from '../img/Pinterest.svg'
 import whatsapp from '../img/whatsapp.svg'
 import youtube from '../img/youtube.svg'
 import search from '../img/search.svg'
-export default function Navigation() {
+export default function Navigation({ recentBlogs }) {
     return (
         <aside className="blog-nav">
             <div className="blog-nav-search">
@@ -21,21 +21,17 @@ export default function Navigation() {
                 <Link to={''}>Design (4)</Link>
                 <Link to={''}>Bedroom Furniture (1)</Link>
             </div>
-            <div className="blog-nav-list">
+            {recentBlogs && <div className="blog-nav-list">
                 <h5>Recent Posts</h5>
-                <span className="blog-nav-item">
-                    <Link to={''}>Cred selfies edison bulb four dollar toast humblebrag</Link>
-                    <span>August 10, 2020 | by <Link to={''}>Ann Summers</Link></span>
-                </span>
-                <span className="blog-nav-item">
-                    <Link to={''}>Semiotics fixie four dollar toast, next level woke scenester direct trade photo booth</Link>
-                    <span>September 30 ,2020 | by <Link to={''}>Ann Summers</Link></span>
-                </span>
-                <span className="blog-nav-item">
-                    <Link to={''}>Cred selfies edison bulb four dollar toast humblebrag</Link>
-                    <span>May 2, 2020 | by <Link to={''}>Ann Summers</Link></span>
-                </span>
-            </div>
+                {recentBlogs.map(blog => <span className="blog-nav-item" key = {blog._id}>
+                    <Link to={`/blog/${blog._id}`}>{blog.title}</Link>
+                    <span>August 10, 2020 | by
+                        <Link to={`/blog/${blog._id}`}>
+                            {blog.author.name} {blog.author.surname}
+                        </Link>
+                    </span>
+                </span>)}
+            </div>}
             <div className="blog-nav-list">
                 <h5>Tags</h5>
                 <Link to={''} className="blog-tag">

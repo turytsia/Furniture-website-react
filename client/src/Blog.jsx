@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //images
 import blogItem2 from './img/blogItem3.png'
@@ -10,26 +10,31 @@ import Navigation from './components/Navigation'
 //http
 import http from './services.js'
 
-export default function Blog({ setBlog }) {
+export default function Blog() {
     const [blogs, setBlogs] = useState(null)
+    const [recentBlogs, setRecentBlogs] = useState(null)
 
+    const [page, setPage] = useState(0)
+    const [pageLength, setPageLength] = useState(0)
     async function getBlogs() {
-        const { data } = await http.get('/blog')
+        const { data } = await http.get(`/blog?page=${page}`)
         if (data.success) {
             setBlogs(data.blogs)
+            setRecentBlogs(data.recentBlogs.slice(0, 3))
+            setPageLength(data.pageLength)
         }
     }
 
     useEffect(() => {
         getBlogs()
-    }, [])
+    }, [page])
     return (
         <section className="blog-page">
-            <div className="wrapper">
+            {blogs && <div className="wrapper">
                 <div className="blog-inner">
                     <section className="blog-list">
                         {blogs && blogs.map(blog => <div className="blog-item" key={blog._id}>
-                            <img src={blogItem2} alt="blog" />
+                            <img src={`http://localhost:5000/${blog.blogImg}`} alt="blog" />
                             <div className="blog-info">
                                 <span className="blog-date">March 12, 2020</span>
                                 <span> | by </span>
@@ -37,7 +42,7 @@ export default function Blog({ setBlog }) {
                                 <span> | </span>
                                 <Link to={''} className="blog-category">{blog.category}</Link>
                             </div>
-                            <Link className="blog-title" onClick={() => setBlog(blog)} to={`/blog/${blog._id}`}>
+                            <Link className="blog-title" to={`/blog/${blog._id}`}>
                                 <h4>{blog.title}</h4>
                             </Link>
                             <p className="blog-text">
@@ -51,19 +56,26 @@ export default function Blog({ setBlog }) {
                             </div>}
                         </div>)}
                     </section>
-                    <Navigation />
+                    <Navigation recentBlogs={recentBlogs} />
                 </div>
                 <div className="pagination">
-                    <Link to={''} className="pagination-arrow">
-                        <img src={arrowLeft} alt="icon" />
-                    </Link>
-                    <span className="pagination-current">1</span>
-                    <span>2</span>
-                    <Link to={''} className="pagination-arrow">
-                        <img src={arrowRight} alt="icon" />
-                    </Link>
+                    {page > 0 && <>
+                        <button onClick={() => setPage(page - 1)} className="pagination-arrow">
+                            <img src={arrowLeft} alt="icon" />
+                        </button>
+                        <span>{page}</span>
+                    </>}
+
+                    <span className="pagination-current">{page + 1}</span>
+
+                    {page < pageLength && <>
+                        <span>{page + 2}</span>
+                        <button onClick={() => setPage(page + 1)} className="pagination-arrow">
+                            <img src={arrowRight} alt="icon" />
+                        </button>
+                    </>}
                 </div>
-            </div>
+            </div>}
 
         </section>
     )

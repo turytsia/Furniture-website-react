@@ -7,7 +7,6 @@ import http from '../services.js'
 import Profile from './Profile'
 import Pages from './Pages'
 import BlogList from './BlogList'
-import Users from './Users'
 import Navigation from './Navigation'
 //pages
 import Register from '../auth/Register'
@@ -49,7 +48,6 @@ export default function Admin() {
                             <Route exact path='/admin/account' component={Profile} />
                             <Route exact path='/admin/pages' component={Pages} />
                             <Route exact path='/admin/blogs' render={()=><BlogList setUser = {setUser}/>} />
-                            <Route exact path='/admin/users' component={Users} />
                         </> :
                         <>
                             <Route exact path='/admin/register' render={() => <Register setAuthorized={setAuthorized} />} />

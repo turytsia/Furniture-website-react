@@ -8,9 +8,10 @@ import http from '../services.js'
 
 
 //components
-function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCategory, setTags, tags, category, title, body }) {
+function NewBlog({ setFile, file, editedBlog, setActivePost, getBlogs, setTitle, setBody, setCategory, setTags, tags, category, title, body }) {
 
     let lastInput = null
+    const [previewImage, setPreviewImage] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
     function selectTag(e) {
@@ -38,19 +39,29 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
     async function addBlog(e) {
         e.preventDefault()
         try {
-            if (!title || !body || !tags.length || !category)
+            if (!title || !body || !tags.length || !category || !file)
                 throw new Error('Please enter all the fields')
-            const { data } = await http.post('/blog/new', { title, body, tags, category })
+            const formData = new FormData();
+            formData.append("file",file);
+            formData.append("title", title);
+            formData.append("body", body);
+            formData.append("tags", tags)
+            formData.append("category", category)
+            const { data } = await http.post('/blog/new', formData)
             if (!data.success)
                 throw new Error(data.message)
             await getBlogs()
+            setTitle('')
+            setBody('')
+            setTags([])
+            setCategory('')
             setActivePost(false)
 
         } catch (err) {
             setErrorMessage(err.message)
         }
     }
-    async function updateBlog(e, id) {
+    async function updateBlog(e) {
         e.preventDefault()
         try {
             if (!title || !body || !tags.length || !category)
@@ -65,22 +76,20 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
             setErrorMessage(err.message)
         }
     }
-    return (<form onSubmit={(e) => editedBlog ? updateBlog(e) : addBlog(e)} className="admin-blog-form">
+    return (<form className="admin-blog-form" encType="multipart/form-data">
         <div className="admin-blog-form-input">
             <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title. Hello, World!" />
         </div>
         <div className="admin-blog-form-input">
-            <input value={tags} onChange={(e) => setTags(e.target.value)} type="text" placeholder="Category" onClick={(e) => selectInput(e)} />
-            <div className="admin-blog-form-inner">
-                <div className="admin-blog-form-list">
-                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
-                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
-                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
-                </div>
-            </div>
+            <textarea value={body} onChange={(e) => setBody(e.target.value)} type="text" placeholder="What is your blog about?" ></textarea>
         </div>
         <div className="admin-blog-form-input">
-            <textarea value={body} onChange={(e) => setBody(e.target.value)} type="text" placeholder="What is your blog about?" ></textarea>
+            <label className="custome-file-input" htmlFor="file">Choose image</label>
+            <input onChange={(e) => {
+                setFile(e.target.files[0])
+                setPreviewImage(URL.createObjectURL(e.target.files[0]))
+                }} type="file" name="file" id="file" />
+            <img src={previewImage} alt="" />
         </div>
         <div className="admin-blog-form-input">
             <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" placeholder="Category" onClick={(e) => selectInput(e)} />
@@ -98,7 +107,17 @@ function NewBlog({ editedBlog, setActivePost, getBlogs, setTitle, setBody, setCa
                 </div>
             </div>
         </div>
-        <button type="submit">{`${editedBlog ? 'Save' : 'Submit'}`}</button>
+        <div className="admin-blog-form-input">
+            <input value={tags} onChange={(e) => setTags(e.target.value)} type="text" placeholder="Tags" onClick={(e) => selectInput(e)} />
+            <div className="admin-blog-form-inner">
+                <div className="admin-blog-form-list">
+                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
+                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
+                    <span onClick={(e) => { selectTag(e) }}>Interior</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" onClick={(e) => editedBlog ? updateBlog(e) : addBlog(e)}>{`${editedBlog ? 'Save' : 'Submit'}`}</button>
         {errorMessage && <h4 className="auth-error">{errorMessage}</h4>}
     </form>)
 }
@@ -115,6 +134,7 @@ export default function BlogList({ setUser }) {
     const [body, setBody] = useState('')
     const [tags, setTags] = useState([])
     const [category, setCategory] = useState('')
+    const [file, setFile] = useState('')
     const [editedBlog, setEditedBlog] = useState(null)
 
     //queries
@@ -151,11 +171,13 @@ export default function BlogList({ setUser }) {
         setEditedBlog,
         editedBlog,
         setActivePost,
+        setFile,
         getBlogs,
         setTitle,
         setBody,
         setCategory,
         setTags,
+        file,
         tags,
         category,
         title,

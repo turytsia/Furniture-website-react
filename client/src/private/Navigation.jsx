@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { faUser,faList,faSignOutAlt,faBlog,faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUser,faList,faSignOutAlt,faBlog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //images
 import logo from '../img/logo.png'
@@ -39,12 +39,6 @@ export default function Navigation({setAuthorized}) {
                         <FontAwesomeIcon icon={faBlog} />
                         <span>
                             Blogs
-                        </span>
-                    </Link>
-                    <Link onClick={()=>setCurrentPage(3)} to={'/admin/users'} className={`admin-option-link ${currentPage===3&&'admin-option-link--active'}`}>
-                        <FontAwesomeIcon icon={faUsers} />
-                        <span>
-                            Users
                         </span>
                     </Link>
                     <Link onClick={()=>logout()} to={'/admin'} className={`admin-option-link ${currentPage===4&&'admin-option-link--active'}`}>

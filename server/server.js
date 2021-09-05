@@ -20,6 +20,8 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
+app.use('/public', express.static('public'))
+
 //routers
 app.use('/', appRouter)
 app.use('/customer', customerRouter)
